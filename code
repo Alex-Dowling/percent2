@@ -1,0 +1,15 @@
+import pandas as pd
+import numpy
+import statistics
+while True:
+    try:
+        userim = float(input("What is your squat PR? (kg) :"))
+        break
+    except ValueError:
+        print("Please put a valid input (Just the number for PR)")
+data = pd.read_csv("powerlifting_dataset.csv")
+data.head()
+squatdt = data[data['Lift Type'] == 'Bench Press']['Amount Lifted (kg)']
+squatper = ((squatdt <= userim).mean()*100).round(2)
+print("")
+print("You're in the", squatper, "percentile for squat PR")
